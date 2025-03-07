@@ -2,15 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class ImageWithBorderAndShadow extends StatelessWidget {
-  const ImageWithBorderAndShadow({
+class ImageWithBorder extends StatelessWidget {
+  const ImageWithBorder({
     super.key,
     this.image,
     this.imageProvider,
     this.borderColor = Colors.white,
-    this.shadowColor = Colors.black,
-    this.borderWidth = 5.0,
-    this.shadowRadius = 15.0,
+    this.borderWidth = 4.0,
   }) : assert(
          image != null || imageProvider != null,
          'Either image or imageProvider must be provided',
@@ -19,9 +17,7 @@ class ImageWithBorderAndShadow extends StatelessWidget {
   final String? image;
   final ImageProvider? imageProvider;
   final Color borderColor;
-  final Color shadowColor;
   final double borderWidth;
-  final double shadowRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +28,7 @@ class ImageWithBorderAndShadow extends StatelessWidget {
 
     return Stack(
       children: [
-        // -- Background
+        // -- Border
         ImageFiltered(
           imageFilter: ImageFilter.dilate(
             radiusX: borderWidth,
