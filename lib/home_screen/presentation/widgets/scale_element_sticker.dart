@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list_light_off/home_screen/controllers/theme_animation_controller.dart';
 
-class ScaleThemeElement extends StatefulWidget {
-  const ScaleThemeElement({
+import 'dart:math' as math;
+
+class ScaleElementSticker extends StatefulWidget {
+  const ScaleElementSticker({
     super.key,
+    required this.location,
     required this.child,
-    this.scaleDestination,
   });
 
+  final int location;
   final Widget child;
-  final double? scaleDestination;
 
   @override
-  State<ScaleThemeElement> createState() => _ScaleThemeElementState();
+  State<ScaleElementSticker> createState() => _ScaleElementStickerState();
 }
 
-class _ScaleThemeElementState extends State<ScaleThemeElement>
+class _ScaleElementStickerState extends State<ScaleElementSticker>
     with SingleTickerProviderStateMixin {
   int? _prevTrigger;
 
@@ -30,14 +32,40 @@ class _ScaleThemeElementState extends State<ScaleThemeElement>
     reverseCurve: Curves.easeOutSine.flipped,
   );
 
-  late final _scale = Tween<double>(
-    begin: 1,
-    end: widget.scaleDestination ?? 0.9,
-  ).animate(_curvedAnimation);
+  late Animation<double> _turns;
 
   @override
   void initState() {
     super.initState();
+
+    _turns = _generateRotationTween().animate(_curvedAnimation);
+  }
+
+  Tween<double> _generateRotationTween() {
+    double startAngle, endAngle;
+
+    switch (widget.location) {
+      case 3:
+        startAngle = -2; // Equivalent to 358° (same as -2°)
+        endAngle = 2;
+        break;
+      case 2:
+        startAngle = 2;
+        endAngle = -2;
+        break;
+      case 1:
+        startAngle = -2;
+        endAngle = -6;
+        break;
+      default:
+        startAngle = 0;
+        endAngle = 0;
+    }
+
+    return Tween<double>(
+      begin: startAngle * (math.pi / 180),
+      end: endAngle * (math.pi / 180),
+    );
   }
 
   @override
@@ -59,14 +87,7 @@ class _ScaleThemeElementState extends State<ScaleThemeElement>
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: ScaleTransition(scale: _scale, child: widget.child),
+      child: RotationTransition(turns: _turns, child: widget.child),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _curvedAnimation.dispose();
-    super.dispose();
   }
 }
