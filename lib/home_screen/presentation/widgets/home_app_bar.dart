@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list_light_off/home_screen/controllers/theme_animation_controller.dart';
 import 'package:shopping_list_light_off/shared/widgets/tap_scaler.dart';
 import 'package:shopping_list_light_off/theme/theme.dart';
 
@@ -10,7 +11,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     final colors = context.colors;
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: colors.background),
+      decoration: BoxDecoration(
+        color: colors.background,
+        boxShadow: [
+          BoxShadow(color: colors.background, spreadRadius: 6, blurRadius: 6),
+        ],
+      ),
       child: SafeArea(
         child: SizedBox.fromSize(
           size: preferredSize,
@@ -33,9 +39,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       TapScaler(
                         onTap: () {
-                          ThemeModeNotifierProvider.of(
+                          context.themeAnimationNotifier.triggerAnimations(
                             context,
-                          ).updateThemeMode();
+                          );
                         },
                         child: Icon(Icons.wb_sunny_outlined),
                       ),
