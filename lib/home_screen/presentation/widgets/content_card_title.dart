@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_list_light_off/home_screen/model/content_title.dart';
+import 'package:shopping_list_light_off/home_screen/model/card_view_model.dart';
+
 import 'package:shopping_list_light_off/home_screen/presentation/widgets/scale_theme_element.dart';
 import 'package:shopping_list_light_off/theme/theme.dart';
 
