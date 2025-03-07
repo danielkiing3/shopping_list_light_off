@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ThemeModeNotifier extends ValueNotifier<ThemeMode> {
-  ThemeModeNotifier() : super(ThemeMode.system);
+  ThemeModeNotifier() : super(ThemeMode.light);
 
-  void updateThemeMode(ThemeMode themeMode) {
-    value = themeMode;
+  void updateThemeMode() {
+    if (value == ThemeMode.light) {
+      value = ThemeMode.dark;
+    } else {
+      value = ThemeMode.light;
+    }
   }
 }
 

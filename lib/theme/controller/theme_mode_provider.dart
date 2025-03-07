@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shopping_list_light_off/theme_mode_controller.dart';
+import 'package:shopping_list_light_off/theme/controller/theme_mode_controller.dart';
 
 // Using InheritedNotifier instead of InheritedWidget
 class ThemeModeNotifierProvider extends InheritedNotifier<ThemeModeNotifier> {
@@ -25,6 +25,10 @@ class ThemeModeNotifierProvider extends InheritedNotifier<ThemeModeNotifier> {
   @override
   bool updateShouldNotify(ThemeModeNotifierProvider oldWidget) =>
       oldWidget.notifier?.value != notifier?.value;
+}
+
+extension ThemeModeProviderExtension on BuildContext {
+  ThemeModeNotifier get themeModeNotifier => ThemeModeNotifierProvider.of(this);
 }
 
 // // Using InheritedWidget instead of InheritedNotifier
