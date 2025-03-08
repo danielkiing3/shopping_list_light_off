@@ -17,7 +17,7 @@ class ContentCard extends StatefulWidget {
 }
 
 class _ContentCardState extends State<ContentCard>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin<ContentCard> {
   final double _containerHeight = 240;
   final double _expandedContainerHeight = 400;
 
@@ -67,16 +67,16 @@ class _ContentCardState extends State<ContentCard>
               child: Stack(
                 children: [
                   // Optimization
-                  child!,
+                  Stack(
+                    fit: StackFit.expand,
+                    children: [child!, _stickerStack()],
+                  ),
                   _buildSlidingOverlay(overlayHeight, colors),
                 ],
               ),
             );
           },
-          child: Stack(
-            fit: StackFit.expand,
-            children: [_buildCardHeader(), _stickerStack()],
-          ),
+          child: _buildCardHeader(),
         ),
       ),
     );
@@ -147,39 +147,53 @@ class _ContentCardState extends State<ContentCard>
       left: 0,
       right: 0,
       top: _containerHeight - 90,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            left: 60,
-            child: ScaleElementSticker(
-              location: 1,
-              child: SizedBox(
-                height: 160,
-                child: ImageWithBorder(image: widget.data.displayImages[0]),
-              ),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Opacity(
+            opacity: 1 - _controller.value,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  left: 60,
+                  child: ScaleElementSticker(
+                    location: 1,
+                    child: SizedBox(
+                      height: 160,
+                      child: ImageWithBorder(
+                        image: widget.data.displayImages[0],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 60,
+                  child: ScaleElementSticker(
+                    location: 2,
+                    child: SizedBox(
+                      height: 160,
+                      child: ImageWithBorder(
+                        image: widget.data.displayImages[1],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  child: ScaleElementSticker(
+                    location: 3,
+                    child: SizedBox(
+                      height: 160,
+                      child: ImageWithBorder(
+                        image: widget.data.displayImages[2],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-          Positioned(
-            right: 60,
-            child: ScaleElementSticker(
-              location: 2,
-              child: SizedBox(
-                height: 160,
-                child: ImageWithBorder(image: widget.data.displayImages[1]),
-              ),
-            ),
-          ),
-          Positioned(
-            child: ScaleElementSticker(
-              location: 3,
-              child: SizedBox(
-                height: 160,
-                child: ImageWithBorder(image: widget.data.displayImages[2]),
-              ),
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
