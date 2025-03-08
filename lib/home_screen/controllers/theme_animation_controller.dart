@@ -16,7 +16,7 @@ class ThemeAnimationNotifier extends ChangeNotifier {
       if (!_hasTriggeredThemeChange) {
         _hasTriggeredThemeChange = true;
         if (context.mounted) {
-          context.themeModeNotifier.updateThemeMode();
+          context.themeModeNotifier.toggleMode();
         }
       }
     });
