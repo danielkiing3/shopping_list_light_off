@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Inherited Notifier that consumes a [ThemeModeNotifier]
 class ThemeModeNotifierProvider extends InheritedNotifier<ThemeModeNotifier> {
   const ThemeModeNotifierProvider({
     super.key,
@@ -24,18 +25,21 @@ class ThemeModeNotifierProvider extends InheritedNotifier<ThemeModeNotifier> {
       oldWidget.notifier?.value != notifier?.value;
 }
 
-extension ThemeModeProviderExtension on BuildContext {
-  ThemeModeNotifier get themeModeNotifier => ThemeModeNotifierProvider.of(this);
-}
-
+/// ValueNotifier for the app current [ThemeMode] state
+///
+/// Exposes a function to toggle between light and dart mode
 class ThemeModeNotifier extends ValueNotifier<ThemeMode> {
   ThemeModeNotifier() : super(ThemeMode.dark);
 
-  void updateThemeMode() {
+  void toggleMode() {
     if (value == ThemeMode.light) {
       value = ThemeMode.dark;
     } else {
       value = ThemeMode.light;
     }
   }
+}
+
+extension ThemeModeProviderExtension on BuildContext {
+  ThemeModeNotifier get themeModeNotifier => ThemeModeNotifierProvider.of(this);
 }
