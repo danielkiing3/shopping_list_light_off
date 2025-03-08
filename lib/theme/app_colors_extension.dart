@@ -7,8 +7,6 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
 
   final Color surfaceSecondary;
 
-  final Color scrim;
-
   final Color textDefault;
 
   final Color textWeak;
@@ -17,30 +15,14 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
 
   final Color iconHighlighted;
 
-  final Color borderDefault;
-
-  final List<Color> borderGradient;
-
-  final List<Color> lightBorderGradient;
-
-  final List<Color> darkBorderGradient;
-
-  final Color skeleton;
-
   const AppColorsExtension({
     required this.background,
     required this.surface,
     required this.surfaceSecondary,
-    required this.scrim,
     required this.textDefault,
     required this.textWeak,
     required this.iconDefault,
     required this.iconHighlighted,
-    required this.borderDefault,
-    required this.borderGradient,
-    required this.lightBorderGradient,
-    required this.darkBorderGradient,
-    required this.skeleton,
   });
 
   @override
@@ -48,31 +30,19 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? background,
     Color? surface,
     Color? surfaceSecondary,
-    Color? scrim,
     Color? textDefault,
     Color? textWeak,
     Color? iconDefault,
     Color? iconHighlighted,
-    Color? borderDefault,
-    List<Color>? borderGradient,
-    List<Color>? lightBorderGradient,
-    List<Color>? darkBorderGradient,
-    Color? skeleton,
   }) {
     return AppColorsExtension(
       background: background ?? this.background,
       surface: surface ?? this.surface,
       surfaceSecondary: surfaceSecondary ?? this.surfaceSecondary,
-      scrim: scrim ?? this.scrim,
       textDefault: textDefault ?? this.textDefault,
       textWeak: textWeak ?? this.textWeak,
       iconDefault: iconDefault ?? this.iconDefault,
       iconHighlighted: iconHighlighted ?? this.iconHighlighted,
-      borderDefault: borderDefault ?? this.borderDefault,
-      borderGradient: borderGradient ?? this.borderGradient,
-      lightBorderGradient: lightBorderGradient ?? this.lightBorderGradient,
-      darkBorderGradient: darkBorderGradient ?? this.darkBorderGradient,
-      skeleton: skeleton ?? this.skeleton,
     );
   }
 
@@ -87,19 +57,10 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       surface: Color.lerp(surface, other.surface, t)!,
       surfaceSecondary:
           Color.lerp(surfaceSecondary, other.surfaceSecondary, t)!,
-      scrim: Color.lerp(scrim, other.scrim, t)!,
       textDefault: Color.lerp(textDefault, other.textDefault, t)!,
       textWeak: Color.lerp(textWeak, other.textWeak, t)!,
       iconDefault: Color.lerp(iconDefault, other.iconDefault, t)!,
       iconHighlighted: Color.lerp(iconHighlighted, other.iconHighlighted, t)!,
-      borderDefault: Color.lerp(borderDefault, other.borderDefault, t)!,
-      borderGradient: [
-        for (final (i, color) in borderGradient.indexed)
-          Color.lerp(color, other.borderGradient[i], t)!,
-      ],
-      lightBorderGradient: lightBorderGradient,
-      darkBorderGradient: darkBorderGradient,
-      skeleton: Color.lerp(skeleton, other.skeleton, t)!,
     );
   }
 }

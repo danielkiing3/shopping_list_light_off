@@ -9,7 +9,7 @@ class AppColors {
 
   static const lightSurface = Color(0xFFFFFFFF);
 
-  static const lightSurfaceSecondary = Color.fromARGB(22, 0, 0, 0);
+  static const lightSurfaceSecondary = Color.fromARGB(10, 0, 0, 0);
 
   static const lightScrim = Color(0x4C000000);
 
