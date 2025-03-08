@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list_light_off/home_screen/controllers/theme_animation_controller.dart';
-import 'package:shopping_list_light_off/shared/widgets/tap_scaler.dart';
 import 'package:shopping_list_light_off/theme/theme.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -37,7 +36,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     mainAxisSize: MainAxisSize.min,
                     spacing: 12,
                     children: [
-                      TapScaler(
+                      GestureDetector(
                         onTap: () {
                           context.themeAnimationNotifier.triggerAnimations(
                             context,
