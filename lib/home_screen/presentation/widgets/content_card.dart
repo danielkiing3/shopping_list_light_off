@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:shopping_list_light_off/home_screen/model/card_view_model.dart';
 import 'package:shopping_list_light_off/home_screen/presentation/widgets/content_card_info_tag.dart';
 import 'package:shopping_list_light_off/home_screen/presentation/widgets/content_card_title.dart';
 import 'package:shopping_list_light_off/home_screen/presentation/widgets/scale_element_sticker.dart';
 import 'package:shopping_list_light_off/home_screen/presentation/widgets/scale_theme_element.dart';
+import 'package:shopping_list_light_off/home_screen/presentation/widgets/two_dimension_overlay.dart';
 import 'package:shopping_list_light_off/shared/widgets/image_with_border.dart';
 import 'package:shopping_list_light_off/theme/theme.dart';
 
@@ -20,6 +23,9 @@ class _ContentCardState extends State<ContentCard>
     with SingleTickerProviderStateMixin<ContentCard> {
   final double _containerHeight = 240;
   final double _expandedContainerHeight = 400;
+
+  final Map<ChildVicinity, int> _childIndexMap = {};
+  int _nextIndex = 0;
 
   late final _controller = AnimationController(
     duration: const Duration(milliseconds: 400),
@@ -101,13 +107,33 @@ class _ContentCardState extends State<ContentCard>
             child: Container(
               height: overlayHeight,
               decoration: BoxDecoration(
-                color: colors.background,
+                color: colors.surface,
                 borderRadius: BorderRadius.circular(24),
               ),
               margin: EdgeInsets.all(4),
-              //TODO: Create an actual overlay
-              child: Center(
-                child: Text('Overlay Content', style: TextStyle(fontSize: 16)),
+              child: TwoDimensionOverlay(
+                delegate: TwoDimensionalChildBuilderDelegate(
+                  maxXIndex: sqrt(widget.data.allImages.length).floor() - 1,
+                  maxYIndex: sqrt(widget.data.allImages.length).floor() - 1,
+                  builder: (context, vicinity) {
+                    if (!_childIndexMap.containsKey(vicinity)) {
+                      _childIndexMap[vicinity] = _nextIndex;
+                      _nextIndex++;
+                    }
+
+                    int itemIndex = _childIndexMap[vicinity]!;
+
+                    return SizedBox(
+                      height: 160,
+                      width: 160,
+                      child: Center(
+                        child: ImageWithBorder(
+                          image: widget.data.allImages[itemIndex],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ),
