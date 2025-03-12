@@ -1,16 +1,35 @@
-# shopping_list_light_off
+# Shopping Theme Switcher with Overlay
 
-A new Flutter project.
+Based on design work by [prosku.a](https://x.com/proskuaaa/status/1891746470963109979) on Twitter
 
-## Getting Started
+## Video Demo
 
-This project is a starting point for a Flutter application.
+https://github.com/user-attachments/assets/c108747f-0411-4977-afa1-6bddc0870f65
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
+To run this app locally, follow these steps:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repo locally
+
+```bash
+git clone https://github.com/danielkiing3/shopping_list_light_off.git
+cd shopping_list_light_off
+```
+2. Install dependencies:
+```bash
+flutter pub get
+```
+3. Run the app:
+```bash
+flutter run
+```
+
+# 💬 Contact
+If you have any questions or feedback, feel free to reach out:
+
+Email: oluwaferanmiidaniel@gmail.com
+
+GitHub: [danielkiing3](https://github.com/danielkiing3)
+
+Twitter: [@daniel_kiing3](https://twitter.com/daniel_kiing3)
