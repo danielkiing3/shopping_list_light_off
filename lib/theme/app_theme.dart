@@ -6,6 +6,7 @@ import 'package:shopping_list_light_off/theme/app_text_styles.dart';
 class AppTheme {
   AppTheme._();
 
+  /// Light app theme
   static ThemeData get lightTheme {
     return ThemeData(
       colorScheme: const ColorScheme.light(),
@@ -18,7 +19,7 @@ class AppTheme {
       extensions: const [
         AppColorsExtension(
           background: AppColors.lightBackground,
-          surface: AppColors.lightSurface,
+          surface: Color.fromARGB(255, 226, 226, 226),
           surfaceSecondary: AppColors.lightSurfaceSecondary,
           textDefault: AppColors.lightTextDefault,
           textWeak: AppColors.lightTextWeak,
@@ -29,6 +30,7 @@ class AppTheme {
     );
   }
 
+  /// Dart app theme
   static ThemeData get darkTheme {
     return ThemeData(
       colorScheme: const ColorScheme.dark(),
@@ -53,6 +55,7 @@ class AppTheme {
   }
 }
 
+/// Custom extension on [BuildContext] for App Theme
 extension AppTheming on BuildContext {
   AppColorsExtension get colors =>
       Theme.of(this).extension<AppColorsExtension>()!;

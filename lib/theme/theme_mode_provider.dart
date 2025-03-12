@@ -29,7 +29,7 @@ class ThemeModeNotifierProvider extends InheritedNotifier<ThemeModeNotifier> {
 ///
 /// Exposes a function to toggle between light and dart mode
 class ThemeModeNotifier extends ValueNotifier<ThemeMode> {
-  ThemeModeNotifier() : super(ThemeMode.dark);
+  ThemeModeNotifier() : super(ThemeMode.light);
 
   void toggleMode() {
     if (value == ThemeMode.light) {
