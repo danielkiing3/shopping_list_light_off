@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+/// Custom widget that takes in a [String] or [ImageProvider] and apply a border
+/// of color [borderColor]
 class ImageWithBorder extends StatelessWidget {
   const ImageWithBorder({
     super.key,

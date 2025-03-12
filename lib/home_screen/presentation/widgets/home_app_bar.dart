@@ -12,9 +12,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colors.background,
-        boxShadow: [
-          BoxShadow(color: colors.background, spreadRadius: 6, blurRadius: 6),
-        ],
+        // boxShadow: [
+        //   BoxShadow(color: colors.background, spreadRadius: 2, blurRadius: 2),
+        // ],
       ),
       child: SafeArea(
         child: SizedBox.fromSize(
